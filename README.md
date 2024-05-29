@@ -1,5 +1,42 @@
-# Fast and Efficient Locomotion via Learned Gait Transitions
 
+
+## Setup for Andrei
+1) git clone git@github.com:A2Veliche/fast_and_efficient_2.git
+ 
+2) cd fast_and_efficient2
+ 
+3) python3 -m venv venv
+ 
+4) source venv/bin/activate
+ 
+5) pip3 install -r requirements.txt
+ 
+6) python3 setup.py install
+ 
+7) sudo apt install libboost-all-dev liblcm-dev
+ 
+8) cd third_party/unitree_legged_sdk
+ 
+9) mkdir build && cd build
+ 
+10) cmake ..
+ 
+11) make
+ 
+12) mv robot_interface* ../../..
+ 
+13) cd ../../../
+ 
+14) python3 -m src.convex_mpc_controller.convex_mpc_controller_example --show_gui=True --max_time_secs=10 --world=plane
+
+## Things to note
+1) Step 3, 4, 5 creates a virtual environment. I recommend using that so that the dependencies inside requirements.txt are not installed in your global python
+environment. 
+2) Every time you make changes to C++ code, I recommend doing a clean build. This involves removing the build, dist and fast_and_efficient.egg-info folders via 
+rm -rf build dist fast_and_efficient.egg-info. And then python3 setup.py install
+3) Making changes to python files does not need a rebuild
+
+# Fast and Efficient Locomotion via Learned Gait Transitions
 This repository contains the code for the paper ["Fast and Efficient Locomotion via Learned Gait Transitions"](https://arxiv.org/abs/2104.04644). Apart from implementation of the paper's results, this repository also contains the entire suite of software interface for the A1 quadruped robot, including:
 
 * A reasonably accurate simulation of the A1 in PyBullet.
